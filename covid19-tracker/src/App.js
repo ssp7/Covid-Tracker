@@ -26,7 +26,7 @@ const App = () => {
   const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(() => {
-    fetch("https://disease.sh/v3/covid-19/all")
+    fetch("https://disease.sh/v3/covid-19/all?twoDaysAgo=true&strict=true")
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
@@ -35,7 +35,9 @@ const App = () => {
 
   useEffect(() => {
     const getCountriesData = async () => {
-      fetch("https://disease.sh/v3/covid-19/countries")
+      fetch(
+        "https://disease.sh/v3/covid-19/countries?twoDaysAgo=true&strict=true"
+      )
         .then((response) => response.json())
         .then((data) => {
           const countries = data.map((country) => ({
